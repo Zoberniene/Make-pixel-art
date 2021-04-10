@@ -10,12 +10,27 @@
 </head>
 
 <body>
-   <input type="number" id="row" placeholder="enter row number">
-   <input type="number" id="column" placeholder="enter column number">
-   <button>Submit</button>
+   <h1>Pixel Art Maker</h1>
 
-   <table id="table">
+   <h2>Choose Grid Size</h2>
 
+   <form id="sizePicker">
+      Grid Height:
+      <input type="number" id="row" name="height" min="1" max="50" placeholder="0">
+      Grid Width:
+      <input type="number" id="column" name="width" min="1" max="50" placeholder="0">
+      <input type="submit" id="submit" value="Make a grid">
+   </form>
+
+   <h2>Pick A Color</h2>
+   <input type="color" id="colorPicker">
+
+   <h2>Now start Your art!</h2>
+   <p> You can draw by clicking on cell or multiple cells on dragging mouse and remove a cell color using mouse
+      double-click</p>
+
+
+   <table id="grid">
    </table>
 
    <script src="script.js"></script>
