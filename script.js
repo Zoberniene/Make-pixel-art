@@ -1,7 +1,6 @@
 'use strict'
 
 //To Do: fix max value in the grid
-//To Do: fix drag and draw function
 
 const grid = document.querySelector('#grid');
 const form = document.querySelector('#sizePicker');
@@ -10,7 +9,7 @@ const row = document.querySelector('#row');
 const col = document.querySelector('#column');
 
 
-submit.addEventListener('click', function (e) {
+submit.addEventListener('click', e => {
    grid.innerHTML = '';
    e.preventDefault();
    makeGrid();
@@ -31,23 +30,35 @@ function makeGrid() {
    }
 }
 
-// change color on click
-grid.addEventListener('click', function (e) {
+// change cell color on click
+grid.addEventListener('click', e => {
    //color defined here, because JS checks whether user has changed color with each new click on cell
    const color = document.querySelector('#colorPicker').value;
    e.target.style.backgroundColor = color;
 });
 
-// drag and draw
-grid.addEventListener('mouseover', function (e) {
+// drag and draw. When mouse is pressed, then color cells
+let isColoring = false;
+grid.addEventListener('mousedown', e => {
    const color = document.querySelector('#colorPicker').value;
    e.target.style.backgroundColor = color;
+   isColoring = true;
 });
 
-// clear color
-grid.addEventListener('dblclick', function (e) {
-   e.target.style.backgroundColor = '';
+grid.addEventListener('mousemove', e => {
+   if (isColoring === true) {
+      const color = document.querySelector('#colorPicker').value;
+      e.target.style.backgroundColor = color;
+   }
 });
 
+grid.addEventListener('mouseup', e => {
+   if (isColoring === true) {
+      isColoring = false;
+   }
+});
 
-
+// clear cell color on double click
+grid.addEventListener('dblclick', e => {
+   e.target.style.backgroundColor = null;
+});
